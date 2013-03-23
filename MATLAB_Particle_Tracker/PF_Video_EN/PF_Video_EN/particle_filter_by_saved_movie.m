@@ -12,7 +12,7 @@ Xrgb_trgt = [255; 0; 0];
 
 %% Loading Movie
 
-vr = VideoReader('Person.wmv');
+vr = VideoReader('Person.mp4');
 
 Npix_resolution = [vr.Width vr.Height];
 Nfrm_movie = floor(vr.Duration * vr.FrameRate);
