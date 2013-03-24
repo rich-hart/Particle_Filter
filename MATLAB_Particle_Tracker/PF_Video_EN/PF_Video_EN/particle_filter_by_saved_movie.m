@@ -21,7 +21,7 @@ Nfrm_movie = floor(vr.Duration * vr.FrameRate);
 
 X = create_particles(Npix_resolution, Npop_particles);
 
-for k = 1:Nfrm_movie
+for k = 1:2
     
     % Getting Image
     Y_k = read(vr, k);
