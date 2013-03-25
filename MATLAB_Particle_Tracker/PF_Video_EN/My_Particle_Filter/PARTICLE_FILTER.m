@@ -36,7 +36,7 @@ for i=1:length(S)
    end
       
    
-     Prob_o_s = WeightingFunction(color,target_color,30 );
+     Prob_o_s = WeightingFunction(color,target_color,20 );
     total_weight=total_weight+  Prob_o_s;
     
     W(i)=W(i)+Prob_o_s;
@@ -44,7 +44,7 @@ end
 
 W=W/sum(W);
 
-percent_save=.80;
+percent_save=.6;
 indexs=randsample(1:length(S),floor(percent_save*length(S)),true,W);
 saveS=S(:,indexs);
 
@@ -54,6 +54,9 @@ randY=randi([1,Ymax],[1,length(S)-floor(percent_save*length(S))]);
 replaceS=[randX;randY];
 
 S=[saveS replaceS];
+
+% indexs=randsample(1:length(S),length(S),true,W);
+% S=S(:,indexs);
 
 for i=1:length(S)
    X=S(1,i);
@@ -85,6 +88,6 @@ W=W/sum(W);
 PS=[S' W' ];
 
 PS= sortrows(PS,-3);
-PS=PS(1:floor(length(PS)*.2),:)';
+PS=PS(1:floor(length(PS)*.3),:)';
 
 end
