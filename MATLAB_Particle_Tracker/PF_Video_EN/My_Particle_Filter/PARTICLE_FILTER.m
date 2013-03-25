@@ -8,9 +8,7 @@ S=zeros(N,3);
 for i = 1 : N
     index=sample_population(i);
     S(i,:)=dbn.map(index,:);
-    if(((374<S(i,1)&& S(i,1)< 391))&&(125<S(i,2)&& S(i,2)<215))
-        stop=true;
-    end
+   
     
 end
 W=zeros(N,1);
@@ -32,7 +30,7 @@ for i = 1 : N
     
     color=[red ; green ; blue];
     target_color=[85;5;5];
-    Prob_o_s = WeightingFunction(color,target_color,10 );
+    Prob_o_s = WeightingFunction(color,target_color,20 );
     
     W(i)=dbn.P_X_0(index)+Prob_o_s;
     
@@ -47,8 +45,44 @@ for i = 1 : N
     index=S(i,3);
     dbn.P_X_0(index)=W(i);
 end
+
+sample_population=zeros(size(S));
+
+
+S=zeros(N,3);
+for i = 1 : N
+    
+    sample_population(i)=randsample(size(dbn.map,1),1,true,dbn.P_X_0);
+
+    
+    
+    index=sample_population(i);
+    
+    
+    S(i,:)=dbn.map(index,:);
+    
+    
+    
+end
+
 particles_t=S;
 
 P_X_0=dbn.P_X_0;
 
+end
+
+function W = getWeight(s)
+ y=s(1);
+    x=s(2);
+  
+    r=y;
+    c=x;
+    red =evidence(r,c,1);
+    green=evidence(r,c,2);
+    blue=evidence(r,c,3);
+    
+    
+    color=[red ; green ; blue];
+    target_color=[85;5;5];
+    W = WeightingFunction(color,target_color,20 );
 end

@@ -19,6 +19,10 @@ D = color - Xrgb_trgt;
         
         L=exp(L);
         
+        
+        if(L<.001)
+           L=0; 
+        end
      
 
 end
