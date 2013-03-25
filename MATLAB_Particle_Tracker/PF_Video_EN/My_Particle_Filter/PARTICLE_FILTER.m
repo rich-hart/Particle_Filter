@@ -20,20 +20,41 @@ sorted_samples =  sortrows(sorted_samples);
 
 S=sorted_samples(1:N,2:4);
 
-top_hits=S(floor(N*.9):N,:);
+for i=1:floor(N/2)
+    
+    X=S(i,2);
+    Y=S(i,1);
 
-Xmean=round(mean(top_hits(:,2)));
+X_good=S(i+floor(N/2),2);
+Xmin=X_good-50;
+Xmax=X_good+50;
 
-Xmin=max(Xmean-50,0);
-Xmax=min(Xmean+50,size(evidence,1));
+Y_good=S(i+floor(N/2),1);
+Ymin=Y_good-50;
+Ymax=Y_good+50;
+if(Xmin<1)
+   Xmin=1; 
+end
 
-Ymean=round(mean(top_hits(:,1)));
-Ymin=max(Ymean-50,0);
-Ymax=min(Ymean+50,size(evidence,2));
-X_replacement = randi([Xmin,Xmax],[floor(N*.9),1]) ;
-Y_replacement = randi([Ymin,Ymax],[floor(N*.9),1]) ;
-S(1:floor(N*.9),1)=X_replacement;
-S(1:floor(N*.9),2)=Y_replacement;
+if(Ymin<1)
+   Ymin=1; 
+end
+if(Xmax>size(evidence,2)-1)
+   Xmax=size(evidence,2)-1; 
+end
+if(Ymax>size(evidence,1)-1)
+   Ymax=size(evidence,1)-1; 
+end
+
+X_replacement = randi([Xmin,Xmax],1) ;
+Y_replacement = randi([Ymin,Ymax],1) ;
+S(i,2)=X_replacement;
+S(i,1)=Y_replacement;
+
+end
+
+
+
 
 for i = 1 : N
  S(i,3)= dbn.maprc( S(i,1), S(i,2));
