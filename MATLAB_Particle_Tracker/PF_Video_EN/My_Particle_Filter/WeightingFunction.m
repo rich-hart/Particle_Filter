@@ -19,8 +19,6 @@ D = color - Xrgb_trgt;
         
         L=exp(L);
         
-     
-
 end
 
 

@@ -1,5 +1,5 @@
 
-dbn= struct('P_X_0',[],'P_X_1_given_P_X_0',[],'P_E_1_given_X_1',[],'map',[]);
+dbn= struct('P_X_0',[],'P_X_1_given_P_X_0',[],'map',[]);
 
 dbn.P_X_0=ones(size(frames,1)*size(frames,2),1)/(size(frames,1)*size(frames,2));
 
@@ -7,7 +7,7 @@ dbn.P_X_0=ones(size(frames,1)*size(frames,2),1)/(size(frames,1)*size(frames,2));
 
 dbn.P_X_1_given_P_X_0=zeros(size(frames,1)*size(frames,2),1);
 
-dbn.P_E_1_given_X_1=CreateSensorDistrobution();
+
 
 dbn.map=zeros(size(frames,1)*size(frames,2),3);
 
