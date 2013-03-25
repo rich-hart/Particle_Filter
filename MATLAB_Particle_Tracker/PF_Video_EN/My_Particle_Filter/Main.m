@@ -1,5 +1,5 @@
 
-dbn= struct('P_X_0',[],'P_X_1_given_P_X_0',[],'map',[]);
+dbn= struct('P_X_0',[],'P_X_1_given_P_X_0',[],'map',[],'maprc',[]);
 
 dbn.P_X_0=ones(size(frames,1)*size(frames,2),1)/(size(frames,1)*size(frames,2));
 
@@ -10,7 +10,7 @@ dbn.P_X_1_given_P_X_0=zeros(size(frames,1)*size(frames,2),1);
 
 
 dbn.map=zeros(size(frames,1)*size(frames,2),3);
-
+ dbn.maprc=zeros(size(frames,1),size(frames,2));
 %Load Map
 counter=0;
 
@@ -21,6 +21,7 @@ for i=1:size(frames,1)
         dbn.map( counter,2)=j;
         dbn.map( counter,3)=counter;
         
+        dbn.maprc(i,j)=counter;
       
     end
 end
