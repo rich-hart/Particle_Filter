@@ -25,14 +25,14 @@ for i = 1 : N
     index=S(i,3);
     r=y;
     c=x;
-    red =evidence(r,c,1)+1;
-    green=evidence(r,c,2)+1;
-    blue=evidence(r,c,3)+1;
+    red =evidence(r,c,1);
+    green=evidence(r,c,2);
+    blue=evidence(r,c,3);
     
     
-    Prob_o_s = dbn.P_E_1_given_X_1(red,1)+...
-        dbn.P_E_1_given_X_1(green,2)+...
-        dbn.P_E_1_given_X_1(blue,3);
+    color=[red ; green ; blue];
+    target_color=[85;5;5];
+    Prob_o_s = WeightingFunction(color,target_color,10 );
     
     W(i)=dbn.P_X_0(index)+Prob_o_s;
     

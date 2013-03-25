@@ -4,6 +4,7 @@ dbn= struct('P_X_0',[],'P_X_1_given_P_X_0',[],'P_E_1_given_X_1',[],'map',[]);
 dbn.P_X_0=ones(size(frames,1)*size(frames,2),1)/(size(frames,1)*size(frames,2));
 
 
+
 dbn.P_X_1_given_P_X_0=zeros(size(frames,1)*size(frames,2),1);
 
 dbn.P_E_1_given_X_1=CreateSensorDistrobution();
@@ -19,13 +20,15 @@ for i=1:size(frames,1)
        dbn.map( counter,1)=i;
         dbn.map( counter,2)=j;
         dbn.map( counter,3)=counter;
+        
+      
     end
 end
 
-
+for loop=1:1
 for t=1:number_frames_in_movie
 
-[particles_t dbn.P_X_1_given_P_X_0] =PARTICLE_FILTER( 1000,frames(:,:,:,t) , dbn );
+[particles_t dbn.P_X_1_given_P_X_0] =PARTICLE_FILTER( 500,frames(:,:,:,t) , dbn );
 
 
 dbn.P_X_0=dbn.P_X_1_given_P_X_0;
@@ -39,6 +42,7 @@ hold on
 plot(particles_t(:,2), particles_t(:,1), '.')
 hold off
 
+end
 end
 
 final_distribution= zeros(size(frames,1),size(frames,2));
