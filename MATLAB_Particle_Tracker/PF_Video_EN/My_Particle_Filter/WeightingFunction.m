@@ -17,6 +17,7 @@ D = color - Xrgb_trgt;
         
         L =  A + B * D2;
         
+        %L=-1.0*(1/L);
         L=exp(L);
         
 end

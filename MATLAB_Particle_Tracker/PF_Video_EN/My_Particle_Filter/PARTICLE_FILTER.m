@@ -8,7 +8,7 @@ Ymax=size(evidence,2);
 
 Ymin=1;
 
-std=100;
+std=10;
 
 total_weight=0;
 
@@ -36,15 +36,23 @@ for i=1:length(S)
    end
       
    
-     Prob_o_s = WeightingFunction(color,target_color,200 );
+     Prob_o_s = WeightingFunction(color,target_color,20 );
     total_weight=total_weight+  Prob_o_s;
     
     W(i)=W(i)+Prob_o_s;
 end
 
-W=W/total_weight;
+W=W/sum(W);
 
-indexs=randsample(1:length(S),length(S),true,W);
-S(:,1:length(S))=S(:,indexs);
+percent_save=.95;
+indexs=randsample(1:length(S),floor(percent_save*length(S)),true,W);
+saveS=S(:,indexs);
+
+randX=randi([1,Xmax],[1,length(S)-floor(percent_save*length(S))]);
+randY=randi([1,Ymax],[1,length(S)-floor(percent_save*length(S))]);
+
+replaceS=[randX;randY];
+
+S=[saveS replaceS];
 
 end

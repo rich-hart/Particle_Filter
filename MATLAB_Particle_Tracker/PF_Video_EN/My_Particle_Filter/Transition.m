@@ -1,8 +1,8 @@
 function [ value ] = Transition( mean,std, value_min, value_max )
 
 
-min=mean-2*std;
-max=mean+2*std;
+min=mean-std;
+max=mean+std;
 
 
 
