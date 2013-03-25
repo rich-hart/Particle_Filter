@@ -8,9 +8,7 @@ S=zeros(N,3);
 for i = 1 : N
     index=sample_population(i);
     S(i,:)=dbn.map(index,:);
-    if(((374<S(i,1)&& S(i,1)< 391))&&(125<S(i,2)&& S(i,2)<215))
-        stop=true;
-    end
+    
     
 end
 W=zeros(N,1);
@@ -47,6 +45,9 @@ for i = 1 : N
     index=S(i,3);
     dbn.P_X_0(index)=W(i);
 end
+
+
+
 particles_t=S;
 
 P_X_0=dbn.P_X_0;
